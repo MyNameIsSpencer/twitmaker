@@ -8,7 +8,7 @@ document.addEventListener("DOMContent", function() {
       url: form.getAttribute('action'),
       method: form.getAttribute('method'),
       data: $(form).serialize(),
-      dataType: 'html'
+      dataType: 'json'
     }).done(function(info) {
       var tweetMessage = document.querySelector('#tweet_message');
       tweetMessage.value = "";
@@ -17,6 +17,8 @@ document.addEventListener("DOMContent", function() {
       freshTweet.className = 'tweet';
       var list = document.querySelector('tweets');
       list.prepend(freshTweet);
+    }).fail(function() {
+      window.location.reload()
     });
   });
 
